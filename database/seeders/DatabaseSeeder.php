@@ -4,6 +4,12 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\AdminUser;
+use App\Models\PartType;
+use App\Models\Brand;
+use App\Models\Product;
+
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,11 +18,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        AdminUser::factory(1)->create([
+            'name' => 'Admin',
+            'email' => 'laravel@laravel.com',
+            'password' => bcrypt('12345'),
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::factory(10)->create();
+
+        Brand::factory(10)->create();
+
+        PartType::factory(10)->create();
+
+        Product::factory(100)->create();
     }
 }
