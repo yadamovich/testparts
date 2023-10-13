@@ -27,4 +27,9 @@ class Product extends Model
     {
         return $this->belongsTo(Brand::class);
     }
+
+    public function getInMoneyFormat($value)
+    {
+        return '$' . number_format($value, 2, '.', ',');
+    }
 }
