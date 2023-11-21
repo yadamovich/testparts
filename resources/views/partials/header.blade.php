@@ -8,11 +8,11 @@
 
     <div class="sm:mb-0 self-center">
         @auth("web")
-            <a href="" class="text-md no-underline text-grey-darker hover:text-blue-dark ml-2 px-1">Logout</a>
+            <a href="{{ route('logout') }}" class="text-md no-underline text-grey-darker hover:text-blue-dark ml-2 px-1">Logout</a>
         @endauth
 
         @guest("web")
-            <a href="" class="text-md no-underline text-grey-darker hover:text-blue-dark ml-2 px-1">Login</a>
+            <a href="{{ route('login') }}" class="text-md no-underline text-grey-darker hover:text-blue-dark ml-2 px-1">Login</a>
         @endguest
     </div>
 </nav>
