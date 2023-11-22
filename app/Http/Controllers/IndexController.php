@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Http\Requests\ContactFormRequest;
+use App\Mail\ContactForm;
+use Illuminate\Support\Facades\Mail;
 
 class IndexController extends Controller
 {
@@ -18,5 +21,17 @@ class IndexController extends Controller
         return view('home', [
             "products" => $products,
         ]);
+    }
+
+    public function showContactForm()
+    {
+        return view("contact_form");
+    }
+
+    public function contactForm(ContactFormRequest $request)
+    {
+        Mail::to("patriot_x@tut.by")->send(new ContactForm($request->validated()));
+
+        return redirect(route("contacts"));
     }
 }

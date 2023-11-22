@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Http\Requests\ReviewForm;
 
 class ProductController extends Controller
 {
@@ -23,5 +24,14 @@ class ProductController extends Controller
         return view('products.show', [
             "product" => $product,
         ]);
+    }
+
+    public function review($id, ReviewForm $request)
+    {
+        $product = Product::findOrFail($id);
+
+        $product->reviews()->create($request->validated());
+
+        return redirect(route("products.show", $id));
     }
 }

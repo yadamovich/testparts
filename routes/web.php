@@ -20,6 +20,7 @@ Route::get('/products/{id}', [\App\Http\Controllers\ProductController::class, 's
 
 Route::middleware("auth:web")->group(function () {
     Route::get('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
+    Route::post('/products/review/{id}', [\App\Http\Controllers\ProductController::class, 'review'])->name('review');
 });
 
 
@@ -33,3 +34,6 @@ Route::middleware("guest:web")->group(function () {
     Route::get('/forgot', [\App\Http\Controllers\AuthController::class, 'showForgotForm'])->name('forgot');
     Route::post('/forgot_process', [\App\Http\Controllers\AuthController::class, 'forgot'])->name('forgot_process');
 });
+
+Route::get('/contacts', [\App\Http\Controllers\IndexController::class, 'showContactForm'])->name('contacts');
+Route::post('/contact_form_process', [\App\Http\Controllers\IndexController::class, 'contactForm'])->name('contact_form_process');
